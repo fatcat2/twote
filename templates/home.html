@@ -1,0 +1,34 @@
+{% extends "index.html" %}
+{% block body %}
+<a class="main" href="/">
+    <h1>tweetcap</h1>
+</a>
+{% if not current_user.is_authenticated %}
+<a href="https://www.reddit.com/r/shibe/comments/8eczhw/wow_flowers/"><img
+        src="https://i.redd.it/7z5hvhqfvot01.jpg" /></a>
+<p>Catch up on top tweets from the people you want to, every Friday noon PST.</p>
+<p>No recommended. No RTs. No nothing.</p>
+<p>Just the ones you want.</p>
+<p>Created by <a href="https://torrtle.co">torrtle</a>.</p>
+{% else %}
+{% for mesg in get_flashed_messages() %}
+<b>{{ mesg }}</b>
+{% endfor %}
+<p>Welcome, {{current_user.email}}.</p>
+<form method="POST" action="/remove_user">
+    <p>{{ form.following.label }}:</p>
+    <p>{{ form.following() }}</p>
+    <p>{{ form.submit()}}</p>
+    {{ form.csrf_token }}
+</form>
+<form method="POST" action="/add_user">
+    <div>{{ new_user_form.new_user.label }}: {{new_user_form.new_user()}}</div>
+    <div>{{ new_user_form.submit() }}</div>
+    {{ new_user_form.csrf_token }}
+</form>
+<form method="POST" action="/sendprevious">
+    <div>{{ sendform.submit() }}</div>
+    {{ sendform.csrf_token }}
+</form>
+{% endif %}
+{% endblock %}
