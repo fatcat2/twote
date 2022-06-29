@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+    yeet:
+        image: twote
+        volumes:
+            - ./data:/data
+        environment:
+            - TWITTER_BEARER_TOKEN=
+            - TWITTER_API_SECRET=
+            - TWITTER_API_KEY=
+            - MAILGUN_KEY=
+            - MAILGUN_DOMAIN=
+            - PORT=5100
+        ports:
+            - "5100:5100"
