@@ -1,8 +1,10 @@
 import sqlite3
 from pytwitter import Api
 
+from dbhelper import get_connection
+
 def updateTweetTable(api: Api):
-    conn = sqlite3.connect("data.sqlite")
+    conn = get_connection()
     c = conn.cursor()
     c.execute("select * from following")
     users = c.fetchall()
