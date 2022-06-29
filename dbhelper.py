@@ -1,4 +1,4 @@
 import sqlite3
 
 def get_connection():
-    return sqlite3.connect("data.sqlite")
+    return sqlite3.connect("data/data.sqlite")
